@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">-->
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.facadecontroller.demo.dao.UserMapper">
+
+    <select id="selectUserById" resultType="com.example.facadecontroller.demo.domain.NewUser">
+        select * from user where id = #{id,jdbcType=BIGINT};
+    </select>
+    <insert id="insert" parameterType="com.example.facadecontroller.demo.domain.NewUser">
+        insert into user values (#{id},#{user_name},#{password},#{name},#{color},#{work_add_time,jdbcType=DATE},#{work_add_end_time,jdbcType=VARCHAR} );
+    </insert>
+    <select id="selectByColor" resultType="com.example.facadecontroller.demo.domain.NewUser">
+      select * from user where color = #{color};
+    </select>
+    <delete id="updateById">
+      update user set color = #{color} where id = #{id} ;
+    </delete>
+    <select id="selectByName" resultType="com.example.facadecontroller.demo.domain.NewUser">
+      SELECT * FROM `user` WHERE `name` LIKE CONCAT('%',#{name,jdbcType=VARCHAR} ,'%');
+    </select>
+</mapper>
